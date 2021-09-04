@@ -5,7 +5,7 @@ var todaysDate = moment()
 $("#currentDay").text(todaysDate.format("dddd, MMMM Do YYYY"));
 
 //Hour containers
-var timeSlotContainer = $('#time-container')
+var timeContainer = $('#time-container')
 var nineAm = $('#9am');
 var tenAm = $('#10am');
 var elevenAm = $('#11am');
@@ -24,13 +24,13 @@ var calendarTextBoxEntry = $('#calendar-event');
 var allSubmitBtns = $('.submitBtn')
 var saveBtn1 = $('#save-btn1');
 var saveBtn2 = $('#save-btn2');
-var saveBtn1 = $('#save-btn3');
-var saveBtn1 = $('#save-btn4');
-var saveBtn1 = $('#save-btn5');
-var saveBtn1 = $('#save-btn6');
-var saveBtn1 = $('#save-btn7');
-var saveBtn1 = $('#save-btn8');
-var saveBtn1 = $('#save-btn9');
+var saveBtn3 = $('#save-btn3');
+var saveBtn4 = $('#save-btn4');
+var saveBtn5 = $('#save-btn5');
+var saveBtn6 = $('#save-btn6');
+var saveBtn7 = $('#save-btn7');
+var saveBtn8 = $('#save-btn8');
+var saveBtn9 = $('#save-btn9');
 
 //Current time
 const currentTime = moment().format("HHmm");
@@ -47,47 +47,41 @@ fourPm = 1600;
 fivePm = 1700;
 
 
-saveBtn1.on('click', function () {
-    console.log(hi)
-})
 
 
+timeContainer.children.value.each(function (i) {
 
+    if (timeContainer.children.value == currentTime) {
+        $("#calendar-event").addClass('present');
+    }
 
-// if ($('#9am').value < currentTime) {
-//     $('#9am').addClass('past');
+    if (timeContainer.children.value < currentTime) {
+        $("#calendar-event").addClass('past');
+    }
+
+    if (timeContainer.children.value > currentTime) {
+        $("#calendar-event").addClass('future');
+    }
+});
+
+// if (nineAm < currentTime) {
+//     $("#calendar-event").addClass('past');
 // }
 
 
 
-// function colorCodedTime() {
 
 
 
-//     if (timeSlotContainer[currentIndex].value == currentTime) {
-//         timeSlotContainer[currentIndex].addClass('present')
-//     };
 
 
-//     if (timeSlotContainer[currentIndex].value < currentTime) {
-//         timeSlotContainer[currentIndex].addClass('past')
-//     };
-
-//     if (timeSlotContainer[currentIndex].value > currentTime) {
-//         timeSlotContainer[currentIndex].addClass('future')
-//     };
-
-// }
-
-// colorCodedTime();
-
-// allSubmitBtns.on('click', function () {
-//     // console.log(e);
-//     // e.preventDefault();
-//     localStorage.setItem('calendar-event', JSON.stringify(calendarTextBoxEntry));
 
 
-// });
+saveBtn1.on('click', function (e) {
+    e.preventDefault();
+    var allSavedEvents = [];
+    localStorage.setItem('calendar-event', JSON.stringify(calendarTextBoxEntry.text));
+});
 
 
 
