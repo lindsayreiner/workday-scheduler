@@ -1,11 +1,19 @@
 //DOM Selectors
 
+var timeEl = $('#currentDay');
+
 //Jumbotron Date
 var todaysDate = moment()
-$("#currentDay").text(todaysDate.format("dddd, MMMM Do YYYY"));
+$("#currentDay").text(todaysDate.format("dddd, MMMM Do YYYY hh:mm"));
 
-//Hour containers
-var timeContainer = $('#time-container')
+//Event saved alert div
+var saveAlert = $('#save-alert');
+
+//Clear calendar button
+var clearCalendarBtn = $('#clear-calendar')
+
+//Hour divs countainer
+var hours = $('.hour');
 var nineAm = $('#9am');
 var tenAm = $('#10am');
 var elevenAm = $('#11am');
@@ -17,98 +25,109 @@ var fourPm = $('#4pm');
 var fivePm = $('#5pm');
 var currentIndex = 0;
 
-//Textbox
-var calendarTextBoxEntry = $('#calendar-event');
 
-//Submit buttons
-var allSubmitBtns = $('.submitBtn')
-var saveBtn1 = $('#save-btn1');
-var saveBtn2 = $('#save-btn2');
-var saveBtn3 = $('#save-btn3');
-var saveBtn4 = $('#save-btn4');
-var saveBtn5 = $('#save-btn5');
-var saveBtn6 = $('#save-btn6');
-var saveBtn7 = $('#save-btn7');
-var saveBtn8 = $('#save-btn8');
-var saveBtn9 = $('#save-btn9');
+// console.log(nineAm[0].attributes[2].value)
 
-//Current time
-const currentTime = moment().format("HHmm");
-console.log(currentTime);
+//Text box content
+var calendarEntries = $('.event-text');
 
-nineAm = 0900;
-tenAm = 1000;
-elevenAm = 1100;
-twelvePm = 1200;
-onePm = 1300;
-twoPm = 1400;
-threePm = 1500;
-fourPm = 1600;
-fivePm = 1700;
+//Save button container
+var allSaveBtns = $('.saveBtn');
+
+//Current time, hour only, military time
+const currentTime = parseInt(moment().format("HH"));
 
 
 
 
-timeContainer.children.value.each(function (i) {
 
-    if (timeContainer.children.value == currentTime) {
-        $("#calendar-event").addClass('present');
-    }
+function colorCoding() {
 
-    if (timeContainer.children.value < currentTime) {
-        $("#calendar-event").addClass('past');
-    }
+    $('.time').each(function () {
+        const hourTimeBlocks = parseInt($(this).attr('value'));
 
-    if (timeContainer.children.value > currentTime) {
-        $("#calendar-event").addClass('future');
-    }
+        if (hourTimeBlocks === currentTime) {
+            $(this).children('.event-text').addClass('present');
+        };
+
+        if (hourTimeBlocks < currentTime) {
+            $(this).children('.event-text').addClass('past');
+        }
+
+        if (hourTimeBlocks > currentTime) {
+            $(this).children('.event-text').addClass('future');
+        }
+    })
+
+};
+
+
+
+function getSavedEvents() {
+    $('#save-btn1').siblings('.event-text').text(localStorage.getItem('save-btn1'));
+    $('#save-btn2').siblings('.event-text').text(localStorage.getItem('save-btn2'));
+    $('#save-btn3').siblings('.event-text').text(localStorage.getItem('save-btn3'));
+    $('#save-btn4').siblings('.event-text').text(localStorage.getItem('save-btn4'));
+    $('#save-btn5').siblings('.event-text').text(localStorage.getItem('save-btn5'));
+    $('#save-btn6').siblings('.event-text').text(localStorage.getItem('save-btn6'));
+    $('#save-btn7').siblings('.event-text').text(localStorage.getItem('save-btn7'));
+    $('#save-btn8').siblings('.event-text').text(localStorage.getItem('save-btn8'));
+    $('#save-btn9').siblings('.event-text').text(localStorage.getItem('save-btn9'));
+
+};
+
+
+
+
+
+$('.saveBtn').on('click', function (e) {
+    e.preventDefault;
+
+    // if ('calendar-event' = null) {
+    // alert('Please input an event or task to save.');
+    // return;
+    // }
+
+    console.log($(this).siblings('.event-text').val())
+
+    var calendarEntry = $(this).siblings('.event-text').val();
+    var militaryTime = $(this).attr('id');
+    console.log(militaryTime);
+
+    // var allSavedEvents = [];
+    // var text = $('.event-text').value;
+    // allSavedEvents.push(calendarEntry);
+
+
+    localStorage.setItem(militaryTime, calendarEntry)
+    getSavedEvents();
+
+    saveAlert.removeClass('hidden');
+    setTimeout(function () {
+        saveAlert.addClass('hidden');
+    }, 2000);
 });
 
-// if (nineAm < currentTime) {
-//     $("#calendar-event").addClass('past');
-// }
 
 
 
+$('#clear-calendar').on('click', function () {
+    $('.event-text').val('');
+    localStorage.clear();
+})
 
 
 
+function updateTime() {
+    timeEl.html(moment().format("ddd, MMMM Do YYYY hh:mm a"));
+}
 
 
+function init() {
+    setInterval(updateTime, 1000);
+    colorCoding();
+    getSavedEvents();
 
+}
 
-saveBtn1.on('click', function (e) {
-    e.preventDefault();
-    var allSavedEvents = [];
-    localStorage.setItem('calendar-event', JSON.stringify(calendarTextBoxEntry.text));
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+init()
