@@ -40,7 +40,7 @@ const currentTime = parseInt(moment().format("HH"));
 
 
 
-
+//
 function colorCoding() {
 
     $('.time').each(function () {
@@ -73,7 +73,6 @@ function getSavedEvents() {
     $('#save-btn7').siblings('.event-text').text(localStorage.getItem('save-btn7'));
     $('#save-btn8').siblings('.event-text').text(localStorage.getItem('save-btn8'));
     $('#save-btn9').siblings('.event-text').text(localStorage.getItem('save-btn9'));
-
 };
 
 
