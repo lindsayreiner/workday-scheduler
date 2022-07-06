@@ -113,10 +113,7 @@ h4 {
 }
 
 #footer {
-  background-image: url("https://uploads-ssl.webflow.com/5ec207a448d573153616868a/60e32bee436ec4884dfae1ea_Mesh%2088.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+  background-color: #1a847d;
   display: flex;
   align-items: center;
   justify-content: center;
