@@ -10,7 +10,7 @@ Live link: https://lindsayreiner.github.io/workday-scheduler/
 
 ## Scheduler Screenshot
 
-<img src="./assets/images/Finished Scheduler.png" alt="finished-scheduler" height="500"/>
+<img src="./assets/images/lindsayreiner.github.io_workday-scheduler_.png" alt="finished-scheduler" height="500"/>
 
 ## User Story
 
