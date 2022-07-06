@@ -14,10 +14,7 @@ textarea {
 }
 
 .jumbotron {
-  background-image: url("https://uploads-ssl.webflow.com/5ec207a448d573153616868a/60e32bee436ec4884dfae1ea_Mesh%2088.jpg");
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+ background-color:rgb(199, 238, 206);
   text-align: center;
   color: black;
   border-radius: 0;
@@ -25,8 +22,11 @@ textarea {
 }
 
 .clear-button {
-  background-color: #d1c951;
+  background-color: #1a847d;
+  color: white;
+  font-weight: bold;
   border-radius: 5px;
+  padding: .5em;
 }
 
 .clear-button:active {
@@ -103,7 +103,7 @@ h4 {
   border-left: 1px solid black;
   border-top-right-radius: 15px;
   border-bottom-right-radius: 15px;
-  background-color: #bd1f69;
+  background-color: rgb(108, 108, 108);
   color: white;
 }
 

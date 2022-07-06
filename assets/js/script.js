@@ -82,20 +82,11 @@ function getSavedEvents() {
 $('.saveBtn').on('click', function (e) {
     e.preventDefault;
 
-    // if ('calendar-event' = null) {
-    // alert('Please input an event or task to save.');
-    // return;
-    // }
-
     console.log($(this).siblings('.event-text').val())
 
     var calendarEntry = $(this).siblings('.event-text').val();
     var militaryTime = $(this).attr('id');
     console.log(militaryTime);
-
-    // var allSavedEvents = [];
-    // var text = $('.event-text').value;
-    // allSavedEvents.push(calendarEntry);
 
 
     localStorage.setItem(militaryTime, calendarEntry)
